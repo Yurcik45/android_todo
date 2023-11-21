@@ -13,10 +13,28 @@ class MainActivity : ComponentActivity() {
     private lateinit var buttonDeleteAllDone: Button
     private lateinit var editTextTodoItem: EditText
     private lateinit var todoAdapter: TodoAdapter
+
+    private fun createTestTodos(): MutableList<Todo> {
+        val itemsCount: Int = 25
+        val testTodos = mutableListOf<Todo>()
+
+        val veryLongTodo: Todo = Todo("veryyyyyyyyyyyyyyyyyyyy long titleeeeeeeeeeeeeeeeeeee")
+        testTodos.add(veryLongTodo)
+
+        for (i in 0 until itemsCount) {
+            val title = "test${i + 1}"
+            val todo = Todo(title)
+            testTodos.add(todo)
+        }
+        return testTodos
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        todoAdapter = TodoAdapter(mutableListOf())
+
+
+        val testTodos = createTestTodos()
+        todoAdapter = TodoAdapter(testTodos)
 
         recyclerViewTodoItems = findViewById(R.id.recyclerViewTodoItems)
         buttonAddTodo = findViewById(R.id.buttonAddTodo)
